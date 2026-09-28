@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: captcha-verify-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: DISCORD_TOKEN
+        scope: run
+      - key: DATABASE_URL
+        scope: run
+      - key: GUILD_ID
+        scope: run
+      - key: CAPTCHA_TIMEOUT
+        value: "300"
+      - key: CAPTCHA_MAX_ATTEMPTS
+        value: "5"
+      - key: CAPTCHA_COOLDOWN
+        value: "30"
+      - key: ANTI_RAID_ENABLED
+        value: "true"
